@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisah Cinta Abadi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts Animation */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 182, 193, 0.8);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Twinkling Stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255, 182, 193, 0.5);
+            }
+            to {
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 30px rgba(255, 182, 193, 0.8), 0 0 40px rgba(255, 182, 193, 0.5);
+            }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: fadeIn 3s ease-out 1s both;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Love Cards */
+        .love-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .love-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: slideInLeft 1.5s ease-out;
+        }
+
+        .love-card:nth-child(even) {
+            animation: slideInRight 1.5s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .love-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.3);
+        }
+
+        .love-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .love-card h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .love-card p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Romantic Quote Section */
+        .quote-section {
+            margin: 4rem 0;
+            text-align: center;
+            max-width: 800px;
+            animation: zoomIn 2s ease-out 2s both;
+        }
+
+        @keyframes zoomIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .quote-section blockquote {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .quote-section blockquote::before,
+        .quote-section blockquote::after {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(255, 182, 193, 0.7);
+            position: absolute;
+        }
+
+        .quote-section blockquote::before {
+            top: -10px;
+            left: -10px;
+        }
+
+        .quote-section blockquote::after {
+            bottom: -40px;
+            right: 10px;
+        }
+
+        .quote-section cite {
+            font-style: italic;
+            color: rgba(255,255,255,0.8);
+            font-size: 1.2rem;
+        }
+
+        /* Interactive Love Button */
+        .love-button {
+            margin: 3rem 0;
+            animation: pulse 2s infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .love-input {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 182, 193, 0.5);
+            border-radius: 25px;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-family: 'Dancing Script', cursive;
+            color: white;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .love-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        .love-input:focus {
+            border-color: rgba(255, 182, 193, 0.8);
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .love-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffa8a8);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            font-family: 'Dancing Script', cursive;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .love-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.5);
+            background: linear-gradient(45deg, #ff5252, #ff7979, #fd79a8);
+        }
+
+        .love-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Responsive Design */
+            @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .love-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .quote-section blockquote {
+                font-size: 2rem;
+                padding: 1rem;
+            }
+
+            .love-input {
+                max-width: 90%;
+                font-size: 1rem;
+            }
+        }
+
+        /* Explosion Effect */
+        .explosion {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .explosion-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) translate(var(--dx), var(--dy));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts -->
+    <div class="hearts" id="hearts"></div>
+    
+    <!-- Twinkling Stars -->
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Kisah Cinta Abadi</h1>
+            <p>Di mana setiap detik bersama adalah keajaiban</p>
+        </section>
+
+        <!-- Love Cards -->
+        <div class="love-cards">
+            <div class="love-card">
+                <div class="icon">💕</div>
+                <h3>Cinta Sejati</h3>
+                <p>Cinta sejati tidak pernah berakhir. Ia seperti bintang di langit malam, selalu bersinar terang meski badai menghampiri.</p>
+            </div>
+            
+            <div class="love-card">
+                <div class="icon">🌹</div>
+                <h3>Keindahan Abadi</h3>
+                <p>Seperti bunga mawar yang mekar di musim semi, kecantikanmu akan selalu memukau hatiku hingga akhir waktu.</p>
+            </div>
+            
+            <div class="love-card">
+                <div class="icon">✨</div>
+                <h3>Momen Magis</h3>
+                <p>Setiap momen bersamamu adalah keajaiban. Waktu seolah berhenti ketika mata kita bertemu dalam kedamaian cinta.</p>
+            </div>
+        </div>
+
+        <!-- Quote Section -->
+        <section class="quote-section">
+            <blockquote>
+                Cinta adalah kekuatan yang mampu mengubah dunia, dimulai dari hati yang paling sederhana
+            </blockquote>
+            <cite>- Dari hati yang mencintai</cite>
+        </section>
+
+        <!-- Interactive Love Button -->
+        <div class="love-button">
+            <input type="text" id="loveMessage" class="love-input" placeholder="Tulis pesan cintamu di sini... 💕" maxlength="200">
+            <button class="love-btn" onclick="sendLoveMessage(event)">
+                Kirim Cinta ❤️
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartSymbols = ['❤️', '💖', '💕', '💗', '💓', '💝'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 15000);
+            }, 3000);
+        }
+
+        // Create twinkling stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Send love message to WhatsApp with explosion effect
+        function sendLoveMessage(event) {
+            // Get user's message
+            const userMessage = document.getElementById('loveMessage').value.trim();
+            
+            if (userMessage === '') {
+                // Show sweet alert if no message
+                alert('💕 Tuliskan pesan cintamu dulu sayang! ✨');
+                return;
+            }
+            
+            // Create explosion effect first
+            createExplosion(event);
+            
+            // Prepare the message (user's input + romantic touch)
+            const finalMessage = `💕 ${userMessage} 💕\n\n✨ Dikirim dengan cinta dari website romantis ✨`;
+            
+            // WhatsApp API URL
+            const phoneNumber = "6281400319424"; // Format internasional
+            const encodedMessage = encodeURIComponent(finalMessage);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            // Delay to show explosion effect then open WhatsApp
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                // Clear the input after sending
+                document.getElementById('loveMessage').value = '';
+            }, 500);
+        }
+        // Create explosion effect (separate function)
+        function createExplosion(event) {
+            const button = event.target;
+            const rect = button.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'explosion-particle';
+                
+                const angle = (Math.PI * 2 * i) / 20;
+                const velocity = Math.random() * 100 + 50;
+                const dx = Math.cos(angle) * velocity;
+                const dy = Math.sin(angle) * velocity;
+                
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+                particle.style.setProperty('--dx', dx + 'px');
+                particle.style.setProperty('--dy', dy + 'px');
+                particle.style.background = `hsl(${Math.random() * 60 + 320}, 70%, 60%)`;
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 1000);
+            }
+
+            // Button animation
+            button.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 150);
+        }
+
+        // Initialize animations
+        window.addEventListener('load', () => {
+            createHearts();
+            createStars();
+        });
+
+        // Add mouse trail effect
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.1) {
+                const trail = document.createElement('div');
+                trail.innerHTML = '✨';
+                trail.style.position = 'fixed';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                trail.style.pointerEvents = 'none';
+                trail.style.color = 'rgba(255, 182, 193, 0.8)';
+                trail.style.fontSize = '12px';
+                trail.style.zIndex = '999';
+                trail.style.animation = 'fadeIn 0.5s ease-out, fadeOut 0.5s ease-out 0.5s';
+                
+                document.body.appendChild(trail);
+                
+                setTimeout(() => {
+                    trail.remove();
+                }, 1000);
+            }
+        });
+
+        // Add fade out keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                0% { opacity: 1; transform: scale(1); }
+                100% { opacity: 0; transform: scale(0.5) translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
